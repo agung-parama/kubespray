@@ -1,0 +1,48 @@
+all:
+  hosts:
+    endeus-prod-k8s-master-1:
+      ansible_host: 192.168.10.10
+      ip: 192.168.10.10
+      access_ip: 192.168.10.10
+    endeus-prod-k8s-master-2:
+      ansible_host: 192.168.10.11
+      ip: 192.168.10.11
+      access_ip: 192.168.10.11
+    endeus-prod-k8s-master-3:
+      ansible_host: 192.168.10.12
+      ip: 192.168.10.12
+      access_ip: 192.168.10.12
+    endeus-prod-k8s-worker-1:
+      ansible_host: 192.168.10.20
+      ip: 192.168.10.20
+      access_ip: 192.168.10.20
+    endeus-prod-k8s-worker-2:
+      ansible_host: 192.168.10.21
+      ip: 192.168.10.21
+      access_ip: 192.168.10.21
+    endeus-prod-k8s-worker-3:
+      ansible_host: 192.168.10.22
+      ip: 192.168.10.22
+      access_ip: 192.168.10.22
+  children:
+    kube_control_plane:
+      hosts:
+        endeus-prod-k8s-master-1:
+        endeus-prod-k8s-master-2:
+        endeus-prod-k8s-master-3:
+    kube_node:
+      hosts:
+        endeus-prod-k8s-worker-1:
+        endeus-prod-k8s-worker-2:
+        endeus-prod-k8s-worker-3:
+    etcd:
+      hosts:
+        endeus-prod-k8s-master-1:
+        endeus-prod-k8s-master-2:
+        endeus-prod-k8s-master-3:
+    k8s_cluster:
+      children:
+        kube_control_plane:
+        kube_node:
+    calico_rr:
+      hosts: {}
