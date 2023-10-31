@@ -19,7 +19,7 @@ calico_cni_name: k8s-pod-network
 # calico_pool_name: "default-pool"
 
 # add default ippool blockSize (defaults kube_network_node_prefix)
-calico_pool_blocksize: 26
+calico_pool_blocksize: 24
 
 # add default ippool CIDR (must be inside kube_pods_subnet, defaults to kube_pods_subnet otherwise)
 # calico_pool_cidr: 1.2.3.4/5
@@ -86,14 +86,14 @@ calico_pool_blocksize: 26
 
 # Set calico network backend: "bird", "vxlan" or "none"
 # bird enable BGP routing, required for ipip and no encapsulation modes
-# calico_network_backend: vxlan
+calico_network_backend: bird
 
 # IP in IP and VXLAN is mutualy exclusive modes.
 # set IP in IP encapsulation mode: "Always", "CrossSubnet", "Never"
-# calico_ipip_mode: 'Never'
+calico_ipip_mode: 'Always'
 
 # set VXLAN encapsulation mode: "Always", "CrossSubnet", "Never"
-# calico_vxlan_mode: 'Always'
+calico_vxlan_mode: 'Never'
 
 # set VXLAN port and VNI
 # calico_vxlan_vni: 4096
